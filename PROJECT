@@ -1,0 +1,7 @@
+domain: ymmt2005.github.io
+repo: github.com/ymmt2005/kubebuilder-ssa
+resources:
+- group: ssa
+  kind: MyService
+  version: v1
+version: "2"

@@ -1,0 +1,24 @@
+# permissions for end users to edit myservices.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: myservice-editor-role
+rules:
+- apiGroups:
+  - ssa.ymmt2005.github.io
+  resources:
+  - myservices
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ssa.ymmt2005.github.io
+  resources:
+  - myservices/status
+  verbs:
+  - get

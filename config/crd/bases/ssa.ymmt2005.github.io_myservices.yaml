@@ -1,0 +1,98 @@
+
+---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.2.5
+  creationTimestamp: null
+  name: myservices.ssa.ymmt2005.github.io
+spec:
+  group: ssa.ymmt2005.github.io
+  names:
+    kind: MyService
+    listKind: MyServiceList
+    plural: myservices
+    singular: myservice
+  scope: Namespaced
+  subresources:
+    status: {}
+  validation:
+    openAPIV3Schema:
+      description: MyService is the Schema for the myservices API
+      properties:
+        apiVersion:
+          description: 'APIVersion defines the versioned schema of this representation
+            of an object. Servers should convert recognized schemas to the latest
+            internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+          type: string
+        kind:
+          description: 'Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+          type: string
+        metadata:
+          type: object
+        spec:
+          description: MyServiceSpec defines the desired state of MyService
+          properties:
+            pointer:
+              type: string
+            ports:
+              description: The list of ports that are exposed by this service.
+              items:
+                description: ServicePort is ...
+                properties:
+                  port:
+                    description: Port number.
+                    maximum: 65535
+                    minimum: 1
+                    type: integer
+                  protocol:
+                    description: Protocol name.
+                    enum:
+                    - TCP
+                    - UDP
+                    type: string
+                  targetPort:
+                    description: Target port number.  If not given, the target is
+                      the same as port.
+                    maximum: 65535
+                    minimum: 1
+                    type: integer
+                required:
+                - port
+                - protocol
+                type: object
+              type: array
+              x-kubernetes-list-map-keys:
+              - port
+              - protocol
+              x-kubernetes-list-type: map
+            string:
+              type: string
+          type: object
+        status:
+          description: MyServiceStatus defines the observed state of MyService
+          properties:
+            count:
+              format: int32
+              type: integer
+            timestamp:
+              format: date-time
+              type: string
+          required:
+          - count
+          type: object
+      type: object
+  version: v1
+  versions:
+  - name: v1
+    served: true
+    storage: true
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

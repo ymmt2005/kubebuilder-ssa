@@ -1,0 +1,7 @@
+apiVersion: ssa.ymmt2005.github.io/v1
+kind: MyService
+metadata:
+  name: myservice-sample
+spec:
+  # Add fields here
+  foo: bar
